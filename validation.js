@@ -10,11 +10,11 @@ const errorEmail = document.getElementById('erroremail');
 const errorPassword = document.getElementById('errorpassword');
 const errorMessage = document.getElementById('error-message');
 
-// Validate fields in real time
+
 function validateFields() {
     let isValid = true;
 
-    // Name
+ 
     if (nameField.value.trim() === "") {
         errorName.textContent = "PLEASE ENTER YOUR NAME";
         nameField.classList.add('is-invalid');
@@ -26,7 +26,6 @@ function validateFields() {
         nameField.classList.add('is-valid');
     }
 
-    // Email
     if (emailField.value.trim() === "") {
         errorEmail.textContent = "PLEASE ENTER YOUR EMAIL";
         emailField.classList.add('is-invalid');
@@ -38,7 +37,6 @@ function validateFields() {
         emailField.classList.add('is-valid');
     }
 
-    // Password (8 characters min)
     if (passwordField.value.trim() === "" || passwordField.value.length < 8) {
         errorPassword.textContent = "PLEASE ENTER A PASSWORD WITH AT LEAST 8 CHARACTERS";
         passwordField.classList.add('is-invalid');
@@ -50,7 +48,7 @@ function validateFields() {
         passwordField.classList.add('is-valid');
     }
 
-    // Confirm password
+  
     if (confirmField.value.trim() === "" || confirmField.value !== passwordField.value) {
         errorMessage.textContent = "PASSWORDS DO NOT MATCH";
         confirmField.classList.add('is-invalid');
@@ -62,7 +60,7 @@ function validateFields() {
         confirmField.classList.add('is-valid');
     }
 
-    // Checkbox
+
     if (!checkBox.checked) {
         checkBox.classList.add('is-invalid');
         checkBox.classList.remove('is-valid');
@@ -75,13 +73,13 @@ function validateFields() {
     return isValid;
 }
 
-// Real-time validation while typing
+
 [nameField, emailField, passwordField, confirmField].forEach((input) => {
     input.addEventListener('input', validateFields);
 });
 checkBox.addEventListener('change', validateFields);
 
-// On form submit
+
 validation.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -90,19 +88,18 @@ validation.addEventListener('submit', (event) => {
     if (formValid) {
         alert("Form is valid and ready to submit!");
 
-        // Clear all input values
         nameField.value = "";
         emailField.value = "";
         passwordField.value = "";
         confirmField.value = "";
         checkBox.checked = false;
 
-        // Remove all red/green borders (reset state)
+  
         [nameField, emailField, passwordField, confirmField, checkBox].forEach(field => {
             field.classList.remove('is-valid', 'is-invalid');
         });
 
-        // Clear error messages
+    
         [errorName, errorEmail, errorPassword, errorMessage].forEach(err => err.textContent = "");
     }
 });
